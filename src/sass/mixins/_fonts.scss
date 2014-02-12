@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    $MIXINS/FONTS - Mixins for fonts
+\*------------------------------------*/
+%custom-font {
+	color: #000;
+	font-family: $text-font-custom;
+	text-transform: uppercase;
+}
+
+%custom-font-bold {
+	@extend %custom-font;
+	font-family: $text-font-custom-bold;
+}
+
+h1 {
+	font-family: $text-font-custom-bold;
+	font-size: em(60);
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+}

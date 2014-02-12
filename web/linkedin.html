@@ -1,0 +1,24 @@
+<!DOCTYPE hmtl>
+<html>
+<head>
+<title>Falcon social demo app</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/screen.css">
+  <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>  
+  <script type="text/javascript" src="js/main.js"></script>  
+  
+</head>
+<body>
+<div class="container">
+    <div class="linkedin">
+        <div class="connections"></div>
+        <div class="profile"></div>
+    </div>
+    <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+      api_key: 770cl8anmswfjz
+      onLoad: linkedin.onLinkedinLoad
+      scope: r_basicprofile r_network
+      authorize: true
+    </script>
+</body>
+</html>

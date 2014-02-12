@@ -1,0 +1,9 @@
+@mixin icon($path, $pos, $size, $bgcolor: transparent) {
+	background: {
+		color: $bgcolor;
+		image: url(#{$path});
+		repeat: no-repeat;
+		position: $pos;
+		size: $size;
+	}
+}

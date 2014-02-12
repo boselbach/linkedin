@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: $body-background-color;
+	font-family: $text-font-custom;
+	font-size: $base-font-size;
+}
+
+.container {
+	@include outer-container;
+	height: 100%;
+  	@include linear-gradient(#fbedc6, #fef9ec);
+
+}

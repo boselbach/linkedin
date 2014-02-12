@@ -1,0 +1,16 @@
+.is-visible {
+	visibility: visible !important;
+}
+
+.is-hidden {
+	display: none;
+	visibility: hidden !important;
+}
+
+/*input*/.is-required {
+
+}
+
+.fill-parent {
+	@include fill-parent;
+}

@@ -1,0 +1,24 @@
+SetEnv APPLICATION_ENV development
+
+#Epiration on static content
+<FilesMatch "\.(ico|flv|jpe?g|png|gif|js|css|swf)$">
+	ExpiresActive On
+	ExpiresDefault "access plus 1 hour"
+</FilesMatch>
+
+RewriteEngine On
+# Never parse public folders through PHP
+RewriteRule ^(admin/)?(dyn|images|js|css) - [L]
+RewriteRule ^favicon\.ico - [L]
+
+# Add trailing slash to uri
+#RewriteBase /
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_URI} !(.*)/$
+#RewriteRule ^(.*)$ $1/ [L,R=301] 
+
+# Parse requests that doesn't map to real files
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
