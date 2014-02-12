@@ -38,16 +38,24 @@ class indexController extends BaseController
 	public function fetch()
 	{
 		try {
-			$query = $resource = $_POST['fetch'];
+			$resource = $_POST['fetch'];
+			$key = $_POST['key'];
 
-		    $params = [
-		    	'oauth2_access_token' => $this->session('access_token'),
-		        'format' => 'json',
-		    ];
-		     
-		    $url = 'https://api.linkedin.com' . $resource . '?' . http_build_query($params);
-		    $context = stream_context_create(['http' => ['method' => 'GET']]);
-		    $response = file_get_contents($url, false, $context);
+			//Use session data if exists
+			if ($this->session($key)) {
+				$response = $this->session($key);
+			}
+			else {
+			    $params = [
+			    	'oauth2_access_token' => $this->session('access_token'),
+			        'format' => 'json',
+			    ];
+			     
+			    $url = 'https://api.linkedin.com' . $resource . '?' . http_build_query($params);
+			    $context = stream_context_create(['http' => ['method' => 'GET']]);
+			    $response = file_get_contents($url, false, $context);
+			    $this->session($key, $response);
+			}
 
 		} catch (Exception $e) {
 			echo $e->getMessage();
@@ -58,14 +66,22 @@ class indexController extends BaseController
 
 	public function export()
 	{
-		$data = $_POST['data'];
-		$fp = fopen('file.csv', 'w');
+		try {
+			$data = $_POST['data'];
+			$file = 'dyn/csv/file' . rand(1000, 1000000) . '.csv';
+			$fp = fopen($file, 'w');
 
-		foreach ($data as $key => $value) {
-			fputcsv($fp, $value);
+			foreach ($data as $key => $value) {
+				fputcsv($fp, $value);
+			}
+			fclose($fp);
+
+			echo json_encode(['file' => $file]);
+		}
+		catch (Exception $e) {
+			echo json_encode(['file' => false]);
 		}
 
-		fclose($fp);
 	}
 
 	protected function getAuthorizationCode()
