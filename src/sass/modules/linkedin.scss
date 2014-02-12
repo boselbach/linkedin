@@ -23,6 +23,30 @@ header {
 	min-height:300px;
 	background-color: #f3f1ec;
 
+	.industries {
+		@include fill-parent();
+
+		.svg {
+			@include span-columns(8);			
+		}
+
+		.industry-list {
+			@include span-columns(8);
+			font-size: 10px;
+
+			div {
+				float:left;
+				
+				.item {
+					width: 10px;
+					height:10px;
+					margin:5px;		
+				}
+			}
+
+		}
+	}
+
 	.connection {
 		@include span-columns(4);
 		@include omega(n3);
