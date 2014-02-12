@@ -91,7 +91,7 @@ class indexController extends BaseController
 			'client_id' => $this->linkedinConfig->apiKey,
 			'scope' => $this->linkedinConfig->scope,
 			'state' => uniqid('', true),
-			'redirect_uri' => $this->linkedinConfig->redirectUrl
+			'redirect_uri' => "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/"
 		];
 
 		$url = $this->linkedinConfig->authenticationUrl . http_build_query($params);
@@ -106,7 +106,7 @@ class indexController extends BaseController
 			'client_id' => $this->linkedinConfig->apiKey,
 			'client_secret' => $this->linkedinConfig->apiSecret,
 			'code' => $_GET['code'],
-			'redirect_uri' => $this->linkedinConfig->redirectUrl
+			'redirect_uri' => "http://{$_SERVER['SERVER_NAME']}:{$_SERVER['SERVER_PORT']}/"
 		];
 
 		$url = $this->linkedinConfig->accessTokenUrl . http_build_query($params);

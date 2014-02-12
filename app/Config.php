@@ -10,8 +10,7 @@ class Config
 			'apiSecret' => 'YTtjPrGzBwQbR0Rk',			
 			'scope' => 'r_fullprofile r_emailaddress rw_nus r_network',
 			'authenticationUrl' => 'https://www.linkedin.com/uas/oauth2/authorization?',
-			'accessTokenUrl' => 'https://www.linkedin.com/uas/oauth2/accessToken?',
-			'redirectUrl' => "http://falcon.dev:80/"
+			'accessTokenUrl' => 'https://www.linkedin.com/uas/oauth2/accessToken?'
 		]
 	];
 
