@@ -36,5 +36,3 @@ sudp apachectl restart
 
 -----------------------------------
 
-NOTICE:
-What ever you set your domain to, you have to set the same value in app/Config.php -> redirectUrl' => "http://falcon.dev:80/"

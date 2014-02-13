@@ -59,6 +59,23 @@ header {
 	min-height:300px;
 	background-color: #f3f1ec;
 
+	.download {
+		@include fill-parent();
+		height:30px;
+		background-color: #999;
+		color:#fff;
+		text-align: center;
+		font-size: 20px;
+		line-height: 25px;
+		display:none;
+
+		a {
+			text-decoration: none;
+			color: inherit;
+			text-transform: uppercase;
+		}
+	}
+
 	.connection {
 		@include span-columns(4);
 		@include omega(n3);
@@ -101,7 +118,8 @@ header {
 	@include span-columns(4);
 	background-color: #f3f1ec;
 	min-height:300px;
-
+	padding:10px;
+	
 	img,
 	div {
 		@include span-columns(2 of 4);

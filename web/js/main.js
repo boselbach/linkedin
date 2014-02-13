@@ -18,12 +18,10 @@
 		}
 	});
 
-
 	window.linkedin = {
 		loadConnections: true,
 		profile: null,
 		connections: null,
-		industriesColors: [],
 		fetch: function(key, resource, callback) {
 			$.ajax({
 				type: "POST",
@@ -45,11 +43,12 @@
 			$.ajax({
 				type: "POST",
 				url: "export",
-				data: { 'data': data, 'key':  key}
+				data: { 'data': data}
 			})
 			.done(function(response) {
 				var data = JSON.parse(response);
 				$(link).attr('href', data.file);
+				$('.download').css('display', 'block');
 			});
 		},
 		
@@ -58,8 +57,6 @@
 	var industries = [];
 	var industriesName = [];
 	var industriesCount = [];
-	var industriesColors = [];
-
 	
 	linkedin.fetch("profile", "/v1/people/~:(id,firstName,lastName,industry,pictureUrl,headline,publicProfileUrl,skills)", function(data) {
 		linkedin.profile = data;
@@ -147,8 +144,6 @@
 				   		var rand2 = Math.floor((Math.random()*255)+1);
 				   		var color = "rgb(" + rand1 + ", " + rand2 + ", " + (d * 10) + ")";
 
-				   		linkedin.industriesColors.push(color);
-
 				   		var html = "<div class='item' data-id=" + i +">";
 					   			html += '<div class="color" style="background-color:'+ color +'">' + industriesCount[i] + '</div>';
 					   			html += '<div class="name">' + industriesName[i] + '</div>';
@@ -180,10 +175,6 @@
 					if (linkedin.connections) {
 						linkedin.export(linkedin.connections, '.csv');	
 					}
-
-
-
-
 			});
 		}
 	});
