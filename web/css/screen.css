@@ -240,6 +240,25 @@ header .info {
   font-size:11px;
 }
 
+.names .item {
+  width:100%;
+  margin:5px 0;
+  background-color: #fff;
+  border:1px solid #04859D;
+  height:40px;
+}
+
+.names .item img{
+  width:40px;
+  height:40px;
+  float:left;
+  margin-right:3px;
+}
+
+.names .item p{
+  float:left;
+  margin-top: 3px;
+}
 
 .profile {
   float: left;

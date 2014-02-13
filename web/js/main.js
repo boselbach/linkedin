@@ -27,8 +27,9 @@
 
 		$names.empty();
 		$connections.each(function(i, connection) {
-			$(connection).addClass('active');
-			$names.append('<p>' + $(connection).data('fullname') + '</p>')
+			$connection = $(connection);
+			$connection.addClass('active');
+			$names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
 		})
 
 	});
