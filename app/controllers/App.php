@@ -23,7 +23,7 @@ class App
 
 	public static function makeView($file)
 	{
-		$view = VIEWS . "{$file}{$action}.phtml";
+		$view = VIEWS . "{$file}.phtml";
 		if (file_exists($view)) {
 			include_once $view;
 		}
