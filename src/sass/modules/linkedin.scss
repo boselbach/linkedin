@@ -1,13 +1,3 @@
-.export {
-	// @include fill-parent();
-	// opacity: 0.3;
-	background-color: #000;
-
-	height:20px;
-	position:fixed;
-	top:0;
-}
-
 header {
 	h1 {
 		font-size: 20px;
@@ -16,36 +6,58 @@ header {
 		letter-spacing: 10px;
 		font-weight: bold;
 	}
+
+	.info {
+		margin-left: 20px;
+	}
+}
+
+.industries {
+	@include fill-parent();
+
+	.svg {
+		@include span-columns(12);			
+	}
+
+	.industry-list {
+		@include span-columns(12);
+		border-top:1px solid #999;
+		border-bottom:1px solid #999;
+		font-size: 10px;
+		
+		.item {
+			@include span-columns(3);
+			@include omega(n4);
+			margin:5px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #D6EAF4;
+			}
+
+			.color {
+				min-width: 25px;
+				min-height: 25px;
+				color:#fff;
+				display: inline-block;
+				line-height: 25px;
+				text-align: center;		
+			}
+
+			.name {
+				display: inline-block;
+				vertical-align: middle;
+				margin:0 0 0 3px;
+
+			}
+		}
+	}
 }
 
 .connections {
 	@include span-columns(8);
 	min-height:300px;
 	background-color: #f3f1ec;
-
-	.industries {
-		@include fill-parent();
-
-		.svg {
-			@include span-columns(8);			
-		}
-
-		.industry-list {
-			@include span-columns(8);
-			font-size: 10px;
-
-			div {
-				float:left;
-				
-				.item {
-					width: 10px;
-					height:10px;
-					margin:5px;		
-				}
-			}
-
-		}
-	}
 
 	.connection {
 		@include span-columns(4);
@@ -66,7 +78,6 @@ header {
 		.industry {
 			font-weight: bold;
 			font-size: 12px;
-			background-color: #D6EAF4;
 			margin-bottom:10px;
 			background-color: #D6EAF4;
 			text-indent: 3px;

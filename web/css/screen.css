@@ -109,18 +109,58 @@ body {
 /*------------------------------------*\
     $MODULES
 \*------------------------------------*/
-.export {
-  background-color: #000;
-  height: 20px;
-  position: fixed;
-  top: 0; }
-
 header h1 {
   font-size: 20px;
   margin: 20px;
   text-transform: uppercase;
   letter-spacing: 10px;
   font-weight: bold; }
+header .info {
+  margin-left: 20px; }
+
+.industries {
+  width: 100%; }
+  .industries .svg {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 100%; }
+    .industries .svg:last-child {
+      margin-right: 0; }
+  .industries .industry-list {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 100%;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    font-size: 10px; }
+    .industries .industry-list:last-child {
+      margin-right: 0; }
+    .industries .industry-list .item {
+      float: left;
+      display: block;
+      margin-right: 1.69492%;
+      width: 23.72881%;
+      margin: 5px;
+      cursor: pointer; }
+      .industries .industry-list .item:last-child {
+        margin-right: 0; }
+      .industries .industry-list .item:nth-child(n4) {
+        margin-right: 0; }
+      .industries .industry-list .item:hover {
+        background-color: #D6EAF4; }
+      .industries .industry-list .item .color {
+        min-width: 25px;
+        min-height: 25px;
+        color: #fff;
+        display: inline-block;
+        line-height: 25px;
+        text-align: center; }
+      .industries .industry-list .item .name {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 0 3px; }
 
 .connections {
   float: left;
@@ -131,29 +171,6 @@ header h1 {
   background-color: #f3f1ec; }
   .connections:last-child {
     margin-right: 0; }
-  .connections .industries {
-    width: 100%; }
-    .connections .industries .svg {
-      float: left;
-      display: block;
-      margin-right: 1.69492%;
-      width: 66.10169%; }
-      .connections .industries .svg:last-child {
-        margin-right: 0; }
-    .connections .industries .industry-list {
-      float: left;
-      display: block;
-      margin-right: 1.69492%;
-      width: 66.10169%;
-      font-size: 10px; }
-      .connections .industries .industry-list:last-child {
-        margin-right: 0; }
-      .connections .industries .industry-list div {
-        float: left; }
-        .connections .industries .industry-list div .item {
-          width: 10px;
-          height: 10px;
-          margin: 5px; }
   .connections .connection {
     float: left;
     display: block;
@@ -176,7 +193,6 @@ header h1 {
     .connections .connection .industry {
       font-weight: bold;
       font-size: 12px;
-      background-color: #D6EAF4;
       margin-bottom: 10px;
       background-color: #D6EAF4;
       text-indent: 3px; }
