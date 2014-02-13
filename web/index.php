@@ -19,12 +19,11 @@ function __autoload($class) {
 }
 
 if (preg_match('/fetch/', $_SERVER['REQUEST_URI'])) {
-	App::run('index', 'fetch');
+	App::run('Index', 'fetch');
 }
 elseif (preg_match('/export/', $_SERVER['REQUEST_URI'])) {
-	App::run('index', 'export');
+	App::run('Index', 'export');
 }
 else {
-	App::run('index', 'index');
+	App::run('Index', 'index');
 }
-
