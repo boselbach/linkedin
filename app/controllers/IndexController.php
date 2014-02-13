@@ -68,7 +68,7 @@ class indexController extends BaseController
 	{
 		try {
 			$data = $_POST['data'];
-			$file = 'dyn/csv/file' . rand(1000, 1000000) . '.csv';
+			$file = 'dyn/csv/file' . $this->session('state') . '.csv';
 			$fp = fopen($file, 'w');
 
 			foreach ($data as $key => $value) {

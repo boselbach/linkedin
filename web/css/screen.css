@@ -217,6 +217,29 @@ header .info {
     .connections .connection a {
       color: inherit;
       text-decoration: none; }
+    .connection.active {
+      background-color: #04859D;
+      color:#fff;
+    }
+
+    .connection.active .industry{
+      background-color: #000;
+      color:#fff;
+    }
+
+.connections {
+  position: relative;;
+}
+
+.names {
+  margin-top:20px;
+  position: absolute;
+  right:0;
+  width:205;
+  height: auto;
+  font-size:11px;
+}
+
 
 .profile {
   float: left;

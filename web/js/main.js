@@ -18,6 +18,21 @@
 		}
 	});
 
+	$('.industry-list').on('click', '.item',function() {
+		$('.connection').removeClass('active');
+
+		var industry = $(this).find('.name').text();
+		var $connections = $('.connection[data-industri="' + industry.toLowerCase() + '"]');
+		var $names = $('.names');
+
+		$names.empty();
+		$connections.each(function(i, connection) {
+			$(connection).addClass('active');
+			$names.append('<p>' + $(connection).data('fullname') + '</p>')
+		})
+
+	});
+
 	window.linkedin = {
 		loadConnections: true,
 		profile: null,
@@ -84,12 +99,12 @@
 					var image = (typeof(connections[connection].pictureUrl) != 'undefined') ? connections[connection].pictureUrl : '../images/missing.jpeg';
 					var industry = (typeof(connections[connection].industry) != 'undefined') ? connections[connection].industry : 'Who knows???';
 					
-					var html = "<div class='connection'>";
+					var html = "<div class='connection' data-industri='" + industry.toLowerCase() + "' data-fullname='" + connections[connection].firstName + ' ' +  connections[connection].lastName + "'>";
 						html += "<div class='industry'>" + industry + "</div>"
 						html += "<a href='" + connections[connection].publicProfileUrl + "'>"
 						html += "<img src=" + image + ">";
-						html += "<span>" + connections[connection].firstName + " </span>";
-						html += "<span>" + connections[connection].lastName + "</span>";
+						html += "<span class='firstname'>" + connections[connection].firstName + " </span>";
+						html += "<span class='lastname'>" + connections[connection].lastName + "</span>";
 						html += "</a>"
 						html += "</div>";
 					
