@@ -8,36 +8,49 @@
 <body>
 <div class="container">
 	<header>
-		<h1>my linkedin connections (<span class="count"></span>)</h1>
-		<p class="info">
-			This is a quick overview of the industries your connections is in
-		</d>
-	</header>
-    <div class="linkedin">
-
-    	<div class="industries">
-			<div class="svg">
-				<svg></svg>
-			</div>
-			<div class="industry-list"></div>
-    	</div>
-        <div class="connections">
-        	<div class="download"><a href="#" class="csv">Download csv</a></div>
-          <div class="names"></div>
-        </div>
-
+		<div>
+			<div class="logo"><img src="images/falcon-social-logo.png" alt="Falcon Social"></div>
+			<h1>my linkedin connections (<span class="count"></span>)</h1>
+			<p class="info">
+				Click an industry and see who of your connections is a part of it
+			</d>
+		</div>
+		<div>
         <div class="profile">
-        	<img src="images/missing.jpeg">	
-        	<div>
+        	<div class="image">
+        		<img src="images/missing.jpeg">	
+        	</div>
+        	<div class="info">
         		<p class="headline"></p>
         		<p class="name"></p>
-				<p class="headline">Industry</p>
+				<p class="headline">My industry</p>
 				<p class="industry"></p>
-				<p class="headline">Skills</p>
-				<div class="skills"></div>
+        	</div>
+        	<div class="skills">
+        		<p class="headline">My skills</p>
         	</div>
         </div>
+		</div>
+	</header>
+    <div class="linkedin">
+		<section>
+	    	<div class="industries">
+				<div class="svg">
+					<svg></svg>
+				</div>
+				<div class="industry-list"></div>
+	    	</div>
+	        <div class="connections">
+	        	<div class="download">
+	        		<a href="#" class="csv">Download all connections as csv</a>
+	        	</div>
+	        </div>
+		    <div class="active-connections">
+		    	<div class="names"></div>
+		    </div>
+		</section>
     </div>
+
   <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="js/d3.v3.js"></script>
   <script type="text/javascript" src="js/main.js"></script>

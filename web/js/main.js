@@ -4,8 +4,9 @@
 			$rect = $('.rect-' + rectid);
 
 			$rect.attr('color', $rect.attr('fill'));
-			$rect.attr('fill', 'red');
-
+			$rect.attr('fill', 'orange');
+			console.log($('text-' + rectid))
+			$('.text-' + rectid).attr('fill', 'white')
 	});
 
 	$('.industry-list').on('mouseleave', '.item',function() {
@@ -15,10 +16,13 @@
 		if ($rect.attr("color")) {
 			$rect.attr('fill', $rect.attr('color'));
 			$rect.removeAttr('color');
+
+			$('.text-' + rectid).attr('fill', 'black')
 		}
 	});
 
 	$('.industry-list').on('click', '.item',function() {
+		$('.industry-list .item').removeClass('active');
 		$('.connection').removeClass('active');
 
 		var industry = $(this).find('.name').text();
@@ -30,8 +34,9 @@
 			$connection = $(connection);
 			$connection.addClass('active');
 			$names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
-		})
-
+		});
+		
+		$(this).addClass('active');
 	});
 
 	window.linkedin = {
@@ -176,6 +181,9 @@
 				   .append("text")
 				   .text(function(d) {
 				   		return d;
+				   })
+				   .attr('class', function(d, i) {
+				   		return 'text-' + i;
 				   })
 				   .attr("text-anchor", "middle")
 				   .attr("x", function(d, i) {

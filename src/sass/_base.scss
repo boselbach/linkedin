@@ -15,6 +15,5 @@ body {
 .container {
 	@include outer-container;
 	height: 100%;
-  	@include linear-gradient(#fbedc6, #fef9ec);
-
+	background-color: #00d6a1;
 }

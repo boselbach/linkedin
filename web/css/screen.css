@@ -96,10 +96,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 100%;
-  background-color: #fbedc6;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbedc6), color-stop(100%, #fef9ec));
-  background-image: -webkit-linear-gradient(#fbedc6, #fef9ec);
-  background-image: linear-gradient(#fbedc6, #fef9ec); }
+  background-color: #00d6a1; }
   .container:before, .container:after {
     content: " ";
     display: table; }
@@ -109,14 +106,85 @@ body {
 /*------------------------------------*\
     $MODULES
 \*------------------------------------*/
-header h1 {
-  font-size: 20px;
+header > div:first-child {
+  float: left;
+  display: block;
+  margin-right: 1.69492%;
+  width: 32.20339%; }
+  header > div:first-child:last-child {
+    margin-right: 0; }
+header > div .profile {
+  float: left;
+  display: block;
+  margin-right: 1.69492%;
+  width: 66.10169%;
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px 0 0 -10px;
+  border-radius: 15px; }
+  header > div .profile:last-child {
+    margin-right: 0; }
+  header > div .profile div .headline {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; }
+    header > div .profile div .headline:first-child {
+      margin-top: 0; }
+  header > div .profile div.image {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 15.25424%; }
+    header > div .profile div.image:last-child {
+      margin-right: 0; }
+    header > div .profile div.image img {
+      height: 80px;
+      width: 80px; }
+  header > div .profile div.info {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 23.72881%;
+    color: #000; }
+    header > div .profile div.info:last-child {
+      margin-right: 0; }
+  header > div .profile div.skills {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 40.67797%; }
+    header > div .profile div.skills:last-child {
+      margin-right: 0; }
+    header > div .profile div.skills .skill {
+      float: left;
+      font-size: 10px;
+      margin-right: 4px; }
+      header > div .profile div.skills .skill:first-letter {
+        font-weight: bold;
+        font-size: 12px; }
+header > div .logo {
+  margin: 10px; }
+header > div h1 {
+  font-size: 16px;
   margin: 20px;
   text-transform: uppercase;
-  letter-spacing: 10px;
-  font-weight: bold; }
-header .info {
-  margin-left: 20px; }
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #fff; }
+header > div .info {
+  margin-left: 20px;
+  color: #fff;
+  font-size: 12px; }
+
+section {
+  float: left;
+  display: block;
+  margin-right: 1.69492%;
+  width: 100%;
+  background-color: #00d6a1; }
+  section:last-child {
+    margin-right: 0; }
 
 .industries {
   width: 100%; }
@@ -132,8 +200,8 @@ header .info {
     display: block;
     margin-right: 1.69492%;
     width: 100%;
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #999;
+    border-top: 1px solid #007356;
+    border-bottom: 1px solid #007356;
     font-size: 10px; }
     .industries .industry-list:last-child {
       margin-right: 0; }
@@ -148,8 +216,9 @@ header .info {
         margin-right: 0; }
       .industries .industry-list .item:nth-child(n4) {
         margin-right: 0; }
-      .industries .industry-list .item:hover {
-        background-color: #D6EAF4; }
+      .industries .industry-list .item:hover, .industries .industry-list .item.active {
+        background-color: #007356;
+        color: #fff; }
       .industries .industry-list .item .color {
         min-width: 25px;
         min-height: 25px;
@@ -168,18 +237,22 @@ header .info {
   margin-right: 1.69492%;
   width: 66.10169%;
   min-height: 300px;
-  background-color: #f3f1ec; }
+  margin-top: 10px; }
   .connections:last-child {
     margin-right: 0; }
   .connections .download {
-    width: 100%;
+    background-color: #00d6a1;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00d6a1), color-stop(100%, #007356));
+    background-image: -webkit-linear-gradient(#00d6a1, #007356);
+    background-image: linear-gradient(#00d6a1, #007356);
     height: 30px;
     background-color: #999;
     color: #fff;
     text-align: center;
     font-size: 20px;
     line-height: 25px;
-    display: none; }
+    display: none;
+    width: 97.8%; }
     .connections .download a {
       text-decoration: none;
       color: inherit;
@@ -190,10 +263,9 @@ header .info {
     margin-right: 1.69492%;
     width: 32.20339%;
     background-color: #fff;
-    border-radius: 5px;
     color: #000;
-    border: 1px solid #000;
-    margin: 20px;
+    border: 1px solid #fff;
+    margin: 2px;
     min-height: 90px;
     padding: 5px;
     position: relative; }
@@ -201,14 +273,21 @@ header .info {
       margin-right: 0; }
     .connections .connection:nth-child(n3) {
       margin-right: 0; }
+    .connections .connection.active {
+      background-color: #00d6a1;
+      color: #fff; }
+      .connections .connection.active .industry {
+        background-color: #007356;
+        color: #fff; }
     .connections .connection:hover {
-      box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.65); }
+      box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.4); }
     .connections .connection .industry {
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
       margin-bottom: 10px;
       background-color: #D6EAF4;
-      text-indent: 3px; }
+      text-indent: 3px;
+      padding: 3px 2px; }
     .connections .connection img {
       float: left;
       height: 80px;
@@ -217,78 +296,38 @@ header .info {
     .connections .connection a {
       color: inherit;
       text-decoration: none; }
-    .connection.active {
-      background-color: #04859D;
-      color:#fff;
-    }
+    .connections .connection span {
+      font-size: 11px; }
 
-    .connection.active .industry{
-      background-color: #000;
-      color:#fff;
-    }
-
-.connections {
-  position: relative;;
-}
-
-.names {
-  margin-top:20px;
-  position: absolute;
-  right:0;
-  width:205;
-  height: auto;
-  font-size:11px;
-}
-
-.names .item {
-  width:100%;
-  margin:5px 0;
-  background-color: #fff;
-  border:1px solid #04859D;
-  height:40px;
-}
-
-.names .item img{
-  width:40px;
-  height:40px;
-  float:left;
-  margin-right:3px;
-}
-
-.names .item p{
-  float:left;
-  margin-top: 3px;
-}
-
-.profile {
+.active-connections {
   float: left;
   display: block;
   margin-right: 1.69492%;
   width: 32.20339%;
-  background-color: #f3f1ec;
-  min-height: 300px;
-  padding: 10px; }
-  .profile:last-child {
+  position: relative; }
+  .active-connections:last-child {
     margin-right: 0; }
-  .profile img,
-  .profile div {
-    float: left;
-    display: block;
-    margin-right: 5.26316%;
-    width: 47.36842%; }
-    .profile img:last-child,
-    .profile div:last-child {
-      margin-right: 0; }
-  .profile img {
-    height: 80px;
-    width: 80px; }
-  .profile .headline {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase; }
-    .profile .headline:first-child {
-      margin-top: 0; }
-  .profile .skills .skill {
-    float: left;
-    font-size: 10px; }
+  .active-connections .names {
+    margin-top: 0;
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 305;
+    height: auto;
+    font-size: 11px;
+    border-left: 1px solid #007356;
+    padding-left: 20px; }
+    .active-connections .names .item {
+      width: 100%;
+      margin: 5px 0;
+      background-color: #fff;
+      border: 1px solid #04859D;
+      height: 52px; }
+      .active-connections .names .item img {
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-right: 3px; }
+      .active-connections .names .item p {
+        float: left;
+        margin-top: 3px; }

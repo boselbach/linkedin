@@ -1,15 +1,86 @@
 header {
-	h1 {
-		font-size: 20px;
-		margin: 20px;
-		text-transform: uppercase;
-		letter-spacing: 10px;
-		font-weight: bold;
+	> div {
+
+		&:first-child {
+			@include span-columns(4);
+		}
+
+		.profile{
+			@include span-columns(8);
+
+			background-color: #fff;
+			padding:10px;
+			margin:10px 0 0 -10px;
+			border-radius: 15px;
+
+			div {
+				.headline {
+					margin-top: 10px;
+					font-size: 14px;
+					font-weight: bold;
+					text-transform: uppercase;
+
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+
+				&.image {
+					@include span-columns(2);
+
+					img {
+						height: 80px;
+						width: 80px;
+					}
+				}
+
+				&.info {
+					@include span-columns(3);
+					color:#000;
+				}
+
+				&.skills {
+					@include span-columns(5);
+
+					.skill {
+						float:left;
+						font-size: 10px;
+						margin-right:4px;
+
+						&:first-letter {
+							font-weight: bold;
+							font-size: 12px;
+						}
+					}
+				}
+			}
+		} 
+
+		.logo {
+			margin:10px;
+		} 
+
+		h1 {
+			font-size: 16px;
+			margin: 20px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-weight: bold;
+			color:#fff;
+		}
+
+		.info {
+			margin-left: 20px;
+			color:#fff;
+			font-size: 12px;
+		}
 	}
 
-	.info {
-		margin-left: 20px;
-	}
+}
+
+section {
+	@include span-columns(12);
+	background-color: #00d6a1;
 }
 
 .industries {
@@ -21,8 +92,8 @@ header {
 
 	.industry-list {
 		@include span-columns(12);
-		border-top:1px solid #999;
-		border-bottom:1px solid #999;
+		border-top:1px solid #007356;
+		border-bottom:1px solid #007356;
 		font-size: 10px;
 		
 		.item {
@@ -31,8 +102,10 @@ header {
 			margin:5px;
 			cursor: pointer;
 
-			&:hover {
-				background-color: #D6EAF4;
+			&:hover,
+			&.active {
+				background-color: #007356;
+				color: #fff;
 			}
 
 			.color {
@@ -57,10 +130,11 @@ header {
 .connections {
 	@include span-columns(8);
 	min-height:300px;
-	background-color: #f3f1ec;
+	margin-top:10px;
 
 	.download {
-		@include fill-parent();
+		@include linear-gradient(#00d6a1, #007356);
+
 		height:30px;
 		background-color: #999;
 		color:#fff;
@@ -68,6 +142,7 @@ header {
 		font-size: 20px;
 		line-height: 25px;
 		display:none;
+		width: 97.8%;
 
 		a {
 			text-decoration: none;
@@ -79,25 +154,36 @@ header {
 	.connection {
 		@include span-columns(4);
 		@include omega(n3);
+
 		background-color: #fff;
-		border-radius: 5px;
 		color: #000;
-		border:1px solid #000;
-		margin: 20px;
+		border:1px solid #fff;
+		margin: 2px;
 		min-height: 90px;
 		padding:5px;
 		position: relative;
 
+		&.active {
+			background-color: #00d6a1;
+			color:#fff;
+
+			.industry{
+				background-color: #007356;
+				color:#fff;
+        	}
+		}
+
 		&:hover {
-			@include box-shadow(0 0 5px 3px hsla(0, 0%, 0%, 0.65));
+			@include box-shadow(0 0 4px 3px hsla(0, 0%, 0%, 0.40));
 		}
 
 		.industry {
 			font-weight: bold;
-			font-size: 12px;
+			font-size: 11px;
 			margin-bottom:10px;
 			background-color: #D6EAF4;
 			text-indent: 3px;
+			padding: 3px 2px;
 		}
 
 		img {
@@ -111,40 +197,46 @@ header {
 			color: inherit;
 			text-decoration: none;
 		}
+
+		span {
+			font-size: 11px;
+		}
 	}
 }
 
-.profile {
+.active-connections {
 	@include span-columns(4);
-	background-color: #f3f1ec;
-	min-height:300px;
-	padding:10px;
-	
-	img,
-	div {
-		@include span-columns(2 of 4);
-	}
+	position:relative;
 
-	img {
-		height: 80px;
-		width: 80px;
-	}
+	.names {
+		margin-top:0;
+		position: absolute;
+		left:-10px;
+		top:10px;
+		width:305;
+		height: auto;
+		font-size:11px;
+		border-left:1px solid #007356;
+		padding-left:20px;
 
-	.headline {
-		margin-top: 10px;
-		font-size: 14px;
-		font-weight: bold;
-		text-transform: uppercase;
+		.item {
+			width:100%;
+			margin:5px 0;
+			background-color: #fff;
+			border:1px solid #04859D;
+			height:52px;
 
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+			img {
+				width:50px;
+				height:50px;
+				float:left;
+				margin-right:3px;
+			}
 
-	.skills {	
-		.skill {
-			float:left;
-			font-size: 10px;
+			p {
+				float:left;
+				margin-top: 3px;
+			}    
 		}
 	}
 }
