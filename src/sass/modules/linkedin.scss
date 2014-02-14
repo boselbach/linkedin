@@ -37,6 +37,16 @@ header {
 				&.info {
 					@include span-columns(3);
 					color:#000;
+
+					.industry-count {
+						margin-top:10px;
+
+						em {
+							font-weight: bold;
+							font-size:13px;
+							color:#000;
+						}
+					}
 				}
 
 				&.skills {

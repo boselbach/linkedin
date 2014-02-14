@@ -121,6 +121,12 @@
 					$container.append(html);	
 				}
 				
+				if (linkedin.profile.industry) {
+					var industry = linkedin.profile.industry.toLowerCase();
+					var text = "You have <em>%d</em> connections in the same industry as you".replace('%d', $('.connection[data-industri="' + industry + '"]').length);
+					$('.industry-count').html(text);
+				}
+
 				dataset = {};
 				for(i = 0; i < industries.length; ++i) {
 				    if (!dataset[industries[i]]) {
