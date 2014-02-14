@@ -67,15 +67,26 @@ class indexController extends BaseController
 	public function export()
 	{
 		try {
+			$writeToCsv = ['firstName', 'lastName', 'industry', 'headline'];
 			$data = $_POST['data'];
 			$file = 'dyn/csv/file' . $this->session('state') . '.csv';
 			$fp = fopen($file, 'w');
 
-			foreach ($data as $key => $value) {
-				fputcsv($fp, $value);
-			}
-			fclose($fp);
+			fputcsv($fp, $writeToCsv);
 
+			foreach (array_values($data) as $index => $values) {
+				unset($values['publicProfileUrl']);
+				unset($values['pictureUrl']);
+
+				$csv = [
+					1 => $values['firstName'],
+					2 => $values['lastName'],
+					3 => $values['industry'],
+					4 => $values['headline'],
+				];
+				fputcsv($fp, $csv);
+			}
+			fclose($fp);	
 			echo json_encode(['file' => $file]);
 		}
 		catch (Exception $e) {
