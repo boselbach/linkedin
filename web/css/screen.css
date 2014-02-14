@@ -147,16 +147,14 @@ header > div .profile {
     margin-right: 1.69492%;
     width: 23.72881%;
     color: #000; }
-    header > div .profile div.info .industry-count {
-      margin-top:10px;
-    }
-    header > div .profile div.info .industry-count em{
-      font-weight: bold;
-      font-size:13px;
-      color:#000;
-    }
     header > div .profile div.info:last-child {
       margin-right: 0; }
+    header > div .profile div.info .industry-count {
+      margin-top: 10px; }
+      header > div .profile div.info .industry-count em {
+        font-weight: bold;
+        font-size: 13px;
+        color: #000; }
   header > div .profile div.skills {
     float: left;
     display: block;

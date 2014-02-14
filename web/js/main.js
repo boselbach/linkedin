@@ -1,215 +1,225 @@
-;(function($) {
-	$('.industry-list').on('mouseenter', '.item',function() {
-		var rectid = $(this).data('id'),
-			$rect = $('.rect-' + rectid);
+;(function ($) {
+    $('.industry-list').on('mouseenter', '.item', function () {
+        var rectid = $(this).data('id'),
+            $rect = $('.rect-' + rectid);
 
-			$rect.attr('color', $rect.attr('fill'));
-			$rect.attr('fill', 'orange');
-			console.log($('text-' + rectid))
-			$('.text-' + rectid).attr('fill', 'white')
-	});
+        $rect.attr('color', $rect.attr('fill'));
+        $rect.attr('fill', 'orange');
+        $('.text-' + rectid).attr('fill', 'white')
+    });
 
-	$('.industry-list').on('mouseleave', '.item',function() {
-		var rectid = $(this).data('id'),
-			$rect = $('.rect-' + rectid);
+    $('.industry-list').on('mouseleave', '.item', function () {
+        var rectid = $(this).data('id'),
+            $rect = $('.rect-' + rectid);
 
-		if ($rect.attr("color")) {
-			$rect.attr('fill', $rect.attr('color'));
-			$rect.removeAttr('color');
+        if ($rect.attr("color")) {
+            $rect.attr('fill', $rect.attr('color'));
+            $rect.removeAttr('color');
 
-			$('.text-' + rectid).attr('fill', 'black')
-		}
-	});
+            $('.text-' + rectid).attr('fill', 'black')
+        }
+    });
 
-	$('.industry-list').on('click', '.item',function() {
-		$('.industry-list .item').removeClass('active');
-		$('.connection').removeClass('active');
+    $('.industry-list').on('click', '.item', function () {
+        $('.industry-list .item').removeClass('active');
+        $('.connection').removeClass('active');
 
-		var industry = $(this).find('.name').text();
-		var $connections = $('.connection[data-industri="' + industry.toLowerCase() + '"]');
-		var $names = $('.names');
+        var industry = $(this).find('.name').text();
+        var $connections = $('.connection[data-industri="' + industry.toLowerCase() + '"]');
+        var $names = $('.names');
 
-		$names.empty();
-		$connections.each(function(i, connection) {
-			$connection = $(connection);
-			$connection.addClass('active');
-			$names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
-		});
+        $names.empty();
+        $connections.each(function (i, connection) {
+            $connection = $(connection);
+            $connection.addClass('active');
+            $names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
+        });
 
-		$(this).addClass('active');
-	});
+        $(this).addClass('active');
+    });
 
-	window.linkedin = {
-		loadConnections: true,
-		profile: null,
-		connections: null,
-		fetch: function(key, resource, callback) {
-			$.ajax({
-				type: "POST",
-				url: "fetch",
-				data: { 'fetch': resource, 'key':  key}
-			})
-			.done(function(response) {
-				try {
-					if (typeof callback == 'function') {
-						callback.call(this, JSON.parse(response));
-					}
-				} 
-				catch(err) {
-					return false;
-				}
-			});
-		},
-		export: function(data, link) {
-			$.ajax({
-				type: "POST",
-				url: "export",
-				data: { 'data': data}
-			})
-			.done(function(response) {
-				var data = JSON.parse(response);
-				$(link).attr('href', data.file);
-				$('.download').css('display', 'block');
-			});
-		},
-		
-	}
+    window.linkedin = {
+        loadConnections: true,
+        profile: null,
+        connections: null,
+        fetch: function (key, resource, callback) {
+            $.ajax({
+                type: "POST",
+                url: "fetch",
+                data: {
+                    'fetch': resource,
+                    'key': key
+                }
+            })
+            .done(function (response) {
+                try {
+                    if (typeof callback == 'function') {
+                        callback.call(this, JSON.parse(response));
+                    }
+                } catch (err) {
+                    return false;
+                }
+            });
+        },
+        export: function (data, link) {
+            $.ajax({
+                type: "POST",
+                url: "export",
+                data: {
+                    'data': data
+                }
+	        })
+            .done(function (response) {
+                var data = JSON.parse(response);
+                $(link).attr('href', data.file);
+                $('.download').css('display', 'block');
+            });
+        },
 
-	var industries = [];
-	var industriesName = [];
-	var industriesCount = [];
-	
-	linkedin.fetch("profile", "/v1/people/~:(id,firstName,lastName,industry,pictureUrl,headline,publicProfileUrl,skills)", function(data) {
-		linkedin.profile = data;
+    }
 
-		$('.profile img').attr('src', data.pictureUrl);
-		$('.profile .name').text(data.firstName + ' ' + data.lastName);
-		$('.profile .industry').text(data.industry);
+    var industries = [];
+    var industriesName = [];
+    var industriesCount = [];
 
-		var skills = data.skills.values,
-			$container = $('.skills');
+    linkedin.fetch("profile", "/v1/people/~:(id,firstName,lastName,industry,pictureUrl,headline,publicProfileUrl,skills)", function (data) {
+        linkedin.profile = data;
 
-		for (skill in skills) {
-			$container.append('<p class="skill">' + skills[skill].skill.name + '</p>')
-		}
-		if (linkedin.loadConnections) {
-			linkedin.fetch("connections", "/v1/people/~/connections:(firstName,lastName,industry,publicProfileUrl,pictureUrl,headline)", function(data) {
-				linkedin.connections = data.values;
+        $('.profile img').attr('src', data.pictureUrl);
+        $('.profile .name').text(data.firstName + ' ' + data.lastName);
+        $('.profile .industry').text(data.industry);
 
-				var connections = data.values,
-					$container = $('.connections');
+        var skills = data.skills.values,
+            $skillsContainer = $('.skills');
 
-				$('.count').text(connections.length);
+        for (skill in skills) {
+            $skillsContainer.append('<p class="skill">' + skills[skill].skill.name + '</p>')
+        }
 
-				for (var connection in connections) {
-					var image = (typeof(connections[connection].pictureUrl) != 'undefined') ? connections[connection].pictureUrl : '../images/missing.jpeg';
-					var industry = (typeof(connections[connection].industry) != 'undefined') ? connections[connection].industry : 'Who knows???';
-					var headline = (typeof(connections[connection].headline) != 'undefined') ? connections[connection].headline : '';
-					
-					var html = "<div class='connection' data-industri='" + industry.toLowerCase() + "' data-fullname='" + connections[connection].firstName + ' ' +  connections[connection].lastName + "'>";
-						html += "<div class='industry'>" + industry + "</div>"
-						html += "<a href='" + connections[connection].publicProfileUrl + "'>"
-						html += "<img src=" + image + ">";
-						html += "<span class='firstname'>" + connections[connection].firstName + " </span>";
-						html += "<span class='lastname'>" + connections[connection].lastName + "</span>";
-						html += "<p class='position'>" + headline + "</p>";
-						html += "</a>"
-						html += "</div>";
-					
-						industries.push(industry);
+        if (linkedin.loadConnections) {
+            linkedin.fetch("connections", "/v1/people/~/connections:(firstName,lastName,industry,publicProfileUrl,pictureUrl,headline)", function (data) {
+                linkedin.connections = data.values;
 
-					$container.append(html);	
-				}
-				
-				if (linkedin.profile.industry) {
-					var industry = linkedin.profile.industry.toLowerCase();
-					var text = "You have <em>%d</em> connections in the same industry as you".replace('%d', $('.connection[data-industri="' + industry + '"]').length);
-					$('.industry-count').html(text);
-				}
+                var connections = data.values,
+                    $connectionsContainer = $('.connections');
 
-				dataset = {};
-				for(i = 0; i < industries.length; ++i) {
-				    if (!dataset[industries[i]]) {
-				        dataset[industries[i]] = 0;
-				    }
-				    ++dataset[industries[i]];
-				}
+                $('.count').text(connections.length);
 
-				for (data in dataset) {
-					industriesName.push(data);
-					industriesCount.push(dataset[data]);
-				}
-				
-				var dataset = industriesCount,
-					 w = $('.industries').width(),
-					 h = 150,
-					 padding = 1;
-				
-				var svg = d3.select("svg")
-							.attr("width", w)
-							.attr("height", h);
+                for (var connection in connections) {
+                    var image = (typeof (connections[connection].pictureUrl) != 'undefined') ? connections[connection].pictureUrl : '../images/missing.jpeg';
+                    var industry = (typeof (connections[connection].industry) != 'undefined') ? connections[connection].industry : 'Who knows???';
+                    var headline = (typeof (connections[connection].headline) != 'undefined') ? connections[connection].headline : '';
 
-				$container = $('.industry-list');
+                    var html = "<div class='connection' data-industri='" + industry.toLowerCase() + "' data-fullname='" + connections[connection].firstName + ' ' + connections[connection].lastName + "'>";
+                    html += "<div class='industry'>" + industry + "</div>"
+                    html += "<a href='" + connections[connection].publicProfileUrl + "'>"
+                    html += "<img src=" + image + ">";
+                    html += "<span class='firstname'>" + connections[connection].firstName + " </span>";
+                    html += "<span class='lastname'>" + connections[connection].lastName + "</span>";
+                    html += "<p class='position'>" + headline + "</p>";
+                    html += "</a>"
+                    html += "</div>";
 
-				svg.selectAll("rect")
-				   .data(dataset)
-				   .enter()
-				   .append("rect")
-				   .attr('class', function(d, i) {
-				   		return 'rect-' + i;
-				   })
-				   .attr("x", function(d, i) {
-				   		return i * (w / dataset.length);
-				   })
-				   .attr("y", function(d) {
-				   		return h - (d * 4);
-				   })
-				   .attr("width", w / dataset.length - padding)
-				   .attr("height", function(d) {
-				   		return d * 4;
-				   })
-				   .attr("fill", function(d, i) {
-				   		var rand1 = Math.floor((Math.random()*255)+1);
-				   		var rand2 = Math.floor((Math.random()*255)+1);
-				   		var color = "rgb(" + rand1 + ", " + rand2 + ", " + (d * 10) + ")";
+                    industries.push(industry);
 
-				   		var html = "<div class='item' data-id=" + i +">";
-					   			html += '<div class="color" style="background-color:'+ color +'">' + industriesCount[i] + '</div>';
-					   			html += '<div class="name">' + industriesName[i] + '</div>';
-					   		html += "<div>";
+                    $connectionsContainer.append(html);
+                }
 
-				   		$container.append(html);
+                if (linkedin.profile.industry) {
+                    var industry = linkedin.profile.industry.toLowerCase();
+                    var text = "You have <em>%d</em> connections in the same industry as you".replace('%d', $('.connection[data-industri="' + industry + '"]').length);
+                    $('.industry-count').html(text);
+                }
 
-						return "rgb(" + rand1 + ", " + rand2 + ", " + (d * 10) + ")";;
-				   });
+                dataset = {};
+                for (i = 0; i < industries.length; ++i) {
+                    if (!dataset[industries[i]]) {
+                        dataset[industries[i]] = 0;
+                    }
+                    ++dataset[industries[i]];
+                }
 
-				svg.selectAll("text")
-				   .data(dataset)
-				   .enter()
-				   .append("text")
-				   .text(function(d) {
-				   		return d;
-				   })
-				   .attr('class', function(d, i) {
-				   		return 'text-' + i;
-				   })
-				   .attr("text-anchor", "middle")
-				   .attr("x", function(d, i) {
-				   		return i * (w / dataset.length) + (w / dataset.length - padding) / 2;
-				   })
-				   .attr("y", function(d) {
-				   		return h - (d * 4) -5;
-				   })
-				   .attr("font-family", "sans-serif")
-				   .attr("font-size", "11px")
-				   .attr("fill", "black");
+                for (data in dataset) {
+                    industriesName.push(data);
+                    industriesCount.push(dataset[data]);
+                }
 
-					if (linkedin.connections) {
-						linkedin.export(linkedin.connections, '.csv');	
-					}
-			});
-		}
-	});
+                var dataset = industriesCount,
+                    width = $('.industries').width(),
+                    height = 150,
+                    padding = 1;
 
+                svg = d3.select('.svg')
+                    .append('svg')
+                    .attr({
+                        height: height,
+                        width: width
+                    });
+
+                $listContainer = $('.industry-list');
+
+                svg.selectAll('rect')
+                    .data(dataset)
+                    .enter()
+                    .append('rect')
+                    .attr({
+                        class: function (d, i) {
+                            return 'rect-' + i;
+                        },
+                        width: function () {
+                            return width / dataset.length - padding
+                        },
+                        height: function (d) {
+                            return d * 5;
+                        },
+                        x: function (d, i) {
+                            return i * (width / dataset.length);
+                        },
+                        y: function (d, i) {
+                            return height - (d * 5)
+                        },
+                        fill: function (d, i) {
+                            var rand1 = Math.floor((Math.random() * 255) + 1);
+                            var rand2 = Math.floor((Math.random() * 255) + 1);
+                            var color = "rgb(" + rand1 + ", " + rand2 + ", " + (d * 10) + ")";
+                            var html = "<div class='item' data-id=" + i + ">";
+                            html += '<div class="color" style="background-color:' + color + '">' + industriesCount[i] + '</div>';
+                            html += '<div class="name">' + industriesName[i] + '</div>';
+                            html += "<div>";
+
+                            $listContainer.append(html);
+
+                            return color;
+                        }
+                    });
+
+                svg.selectAll('text')
+                    .data(dataset)
+                    .enter()
+                    .append('text')
+	                .text(function (d) {
+	                    return d;
+	                })
+	                .attr({
+	                    class: function (d, i) {
+	                        return 'text-' + i
+	                    },
+	                    x: function (d, i) {
+	                        return i * (width / dataset.length) + (width / dataset.length - padding) / 2;
+	                    },
+	                    y: function (d, i) {
+	                        return height - (d * 5) - 5;
+	                    },
+	                    style: function () {
+	                        return 'font-family:sans-serif; font-size:11px;text-anchor:middle;';
+	                    },
+	                    fill: 'black'
+	                });
+
+                if (linkedin.connections) {
+                    linkedin.export(linkedin.connections, '.csv');
+                }
+            });
+        }
+    });
 })(jQuery)
-
