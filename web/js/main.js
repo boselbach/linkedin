@@ -35,7 +35,7 @@
 			$connection.addClass('active');
 			$names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
 		});
-		
+
 		$(this).addClass('active');
 	});
 
@@ -93,7 +93,7 @@
 			$container.append('<p class="skill">' + skills[skill].skill.name + '</p>')
 		}
 		if (linkedin.loadConnections) {
-			linkedin.fetch("connections", "/v1/people/~/connections:(firstName,lastName,industry,publicProfileUrl,pictureUrl)", function(data) {
+			linkedin.fetch("connections", "/v1/people/~/connections:(firstName,lastName,industry,publicProfileUrl,pictureUrl,headline)", function(data) {
 				linkedin.connections = data.values;
 
 				var connections = data.values,
@@ -104,6 +104,7 @@
 				for (var connection in connections) {
 					var image = (typeof(connections[connection].pictureUrl) != 'undefined') ? connections[connection].pictureUrl : '../images/missing.jpeg';
 					var industry = (typeof(connections[connection].industry) != 'undefined') ? connections[connection].industry : 'Who knows???';
+					var headline = (typeof(connections[connection].headline) != 'undefined') ? connections[connection].headline : '';
 					
 					var html = "<div class='connection' data-industri='" + industry.toLowerCase() + "' data-fullname='" + connections[connection].firstName + ' ' +  connections[connection].lastName + "'>";
 						html += "<div class='industry'>" + industry + "</div>"
@@ -111,6 +112,7 @@
 						html += "<img src=" + image + ">";
 						html += "<span class='firstname'>" + connections[connection].firstName + " </span>";
 						html += "<span class='lastname'>" + connections[connection].lastName + "</span>";
+						html += "<p class='position'>" + headline + "</p>";
 						html += "</a>"
 						html += "</div>";
 					

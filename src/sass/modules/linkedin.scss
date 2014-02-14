@@ -200,6 +200,13 @@ section {
 
 		span {
 			font-size: 11px;
+			font-weight: bold;
+		}
+
+		.position {
+			margin-top: 10px;
+			font-size: 11px;
+			overflow: hidden;
 		}
 	}
 }
@@ -209,6 +216,9 @@ section {
 	position:relative;
 
 	.names {
+		min-height:50px;
+		background-color: #fff;
+		border-radius: 15px;
 		margin-top:0;
 		position: absolute;
 		left:-10px;
@@ -216,11 +226,11 @@ section {
 		width:305;
 		height: auto;
 		font-size:11px;
-		border-left:1px solid #007356;
+		border:1px solid #007356;
 		padding-left:20px;
 
 		.item {
-			width:100%;
+			width:263px;
 			margin:5px 0;
 			background-color: #fff;
 			border:1px solid #04859D;
