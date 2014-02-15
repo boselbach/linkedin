@@ -224,11 +224,12 @@ section {
         margin-right: 0; }
       .industries .industry-list .item:hover, .industries .industry-list .item.active {
         background-color: #007356;
-        color: #fff; }
+        color: #fff;
+        font-size: 12px; }
       .industries .industry-list .item .color {
         min-width: 25px;
         min-height: 25px;
-        color: #fff;
+        color: #000;
         display: inline-block;
         line-height: 25px;
         text-align: center; }

@@ -4,7 +4,7 @@
             $rect = $('.rect-' + rectid);
 
         $rect.attr('color', $rect.attr('fill'));
-        $rect.attr('fill', 'orange');
+        $rect.attr('fill', 'white');
         $('.text-' + rectid).attr('fill', 'white')
     });
 
@@ -147,7 +147,7 @@
                 var dataset = industriesCount,
                     width = $('.industries').width(),
                     height = 150,
-                    padding = 1;
+                    padding = 2;
 
                 svg = d3.select('.svg')
                     .append('svg')
@@ -157,6 +157,15 @@
                     });
 
                 $listContainer = $('.industry-list');
+
+                var heightScale = d3.scale.linear()
+                					.domain([0, d3.max(industriesCount)])
+                					.range([0, height-20])
+
+                var max = d3.max(industriesCount);
+                var fillcolor = d3.scale.linear()
+                			.domain([1, (max/4) ,(max/2), max])
+                			.range(['#ffff00', '#ff0000', '#3987c9', '#66CD00']);
 
                 svg.selectAll('rect')
                     .data(dataset)
@@ -170,18 +179,16 @@
                             return width / dataset.length - padding
                         },
                         height: function (d) {
-                            return d * 5;
+                            return heightScale(d);
                         },
                         x: function (d, i) {
                             return i * (width / dataset.length);
                         },
                         y: function (d, i) {
-                            return height - (d * 5)
+                            return height - (heightScale(d));
                         },
                         fill: function (d, i) {
-                            var rand1 = Math.floor((Math.random() * 255) + 1);
-                            var rand2 = Math.floor((Math.random() * 255) + 1);
-                            var color = "rgb(" + rand1 + ", " + rand2 + ", " + (d * 10) + ")";
+                        	var color = fillcolor(d);
                             var html = "<div class='item' data-id=" + i + ">";
                             html += '<div class="color" style="background-color:' + color + '">' + industriesCount[i] + '</div>';
                             html += '<div class="name">' + industriesName[i] + '</div>';
@@ -190,7 +197,7 @@
                             $listContainer.append(html);
 
                             return color;
-                        }
+                        }	
                     });
 
                 svg.selectAll('text')
@@ -208,7 +215,7 @@
 	                        return i * (width / dataset.length) + (width / dataset.length - padding) / 2;
 	                    },
 	                    y: function (d, i) {
-	                        return height - (d * 5) - 5;
+	                        return height - (heightScale(d)) - 5;
 	                    },
 	                    style: function () {
 	                        return 'font-family:sans-serif; font-size:11px;text-anchor:middle;';

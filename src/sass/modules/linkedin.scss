@@ -116,12 +116,13 @@ section {
 			&.active {
 				background-color: #007356;
 				color: #fff;
+				font-size: 12px;
 			}
 
 			.color {
 				min-width: 25px;
 				min-height: 25px;
-				color:#fff;
+				color:#000;
 				display: inline-block;
 				line-height: 25px;
 				text-align: center;		
