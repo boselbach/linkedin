@@ -4,8 +4,8 @@
             $rect = $('.rect-' + rectid);
 
         $rect.attr('color', $rect.attr('fill'));
-        $rect.attr('fill', 'white');
-        $('.text-' + rectid).attr('fill', 'white')
+        $rect.attr('fill', '#007356');
+        $('.text-' + rectid).attr('fill', '#007356')
     });
 
     $('.industry-list').on('mouseleave', '.item', function () {
@@ -32,7 +32,8 @@
         $connections.each(function (i, connection) {
             $connection = $(connection);
             $connection.addClass('active');
-            $names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><p>' + $connection.data('fullname') + '</p></div>')
+            // $names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"></div>')
+            $names.append('<div class="item"><img src="' + $connection.find('img').attr('src') + '"><div><p>' + $connection.data('fullname') + '</p></div></div>')
         });
 
         $(this).addClass('active');
@@ -145,11 +146,11 @@
                 }
 
                 var dataset = industriesCount,
-                    width = $('.industries').width(),
-                    height = 150,
+                    width = $('.svg .bar').width(),
+                    height = 130,
                     padding = 2;
 
-                svg = d3.select('.svg')
+                svg = d3.select('.svg .bar')
                     .append('svg')
                     .attr({
                         height: height,
